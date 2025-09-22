@@ -1,0 +1,285 @@
+/* Secondary Nav */
+.secondary-nav {
+  display: flex;
+  gap: 20px;
+  padding: 10px 24px;
+  background: #f1f5f9;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.nav-item {
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-item:hover {
+  color: #2563eb;
+}
+
+/* Popup Menus */
+.popup-menu {
+  position: absolute;
+  top: 45px; /* just below secondary nav */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.popup-menu div {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.popup-menu div:hover {
+  background: #f1f5f9;
+}
+
+.popup-menu .danger {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+.popup-menu .danger:hover {
+  background: #fee2e2;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.font-select,
+.size-select {
+  padding: 4px;
+}
+
+.tool-btn {
+  background: #f1f5f9;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.tool-btn:hover {
+  background: #e2e8f0;
+}
+
+/* Main Notes Layout */
+.notes-layout {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+/* Side columns */
+.side-column {
+  width: 150px;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.sidebar-tab {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.sidebar-tab:hover {
+  background: #e0ecff;
+}
+
+.sidebar-tab.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* Divider */
+.divider {
+  width: 1px;
+  background: #ddd;
+}
+
+/* Note Editor */
+.note-editor {
+  flex: 1;
+  padding: 20px 30px;
+  background: white;
+}
+
+.page-item.active {
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+}
+.context-popup {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  z-index: 1000;
+  padding: 4px 0;
+}
+
+.context-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.context-item:hover {
+  background: #f5f5f5;
+}
+
+.context-item.danger {
+  color: red;
+}
+
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ✅ Base styles (keep your existing styles as-is) */
+
+/* -------------------------- */
+/* Responsive for tablets     */
+/* -------------------------- */
+@media (max-width: 768px) {
+  .secondary-nav {
+    gap: 12px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 12px;
+  }
+
+  .side-column {
+    width: 120px;
+    padding: 8px;
+  }
+
+  .note-editor {
+    padding: 15px 20px;
+  }
+}
+
+/* -------------------------- */
+/* Responsive for phones      */
+/* -------------------------- */
+@media (max-width: 480px) {
+  /* Navbar stacks */
+  .navbar {
+    flex-direction: column;
+    gap: 1px;
+    padding: 8px 12px;
+  }
+
+  .navbar-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .navbar-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .search-box {
+    flex: 1;
+    width: 50%;
+  }
+
+  /* Secondary nav collapses */
+  .secondary-nav {
+    flex-wrap: wrap;
+    font-size: 13px;
+    padding: 6px 10px;
+    gap: 8px;
+  }
+
+  /* Main layout stacks */
+  .notes-layout {
+    flex-direction: column;
+  }
+
+  .side-column {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 6px;
+    gap: 8px;
+  }
+
+  .sidebar-tab {
+    flex: 0 0 auto;
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .sections-list,
+  .pages-list {
+    display: flex;
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+
+  .section-item,
+  .page-item {
+    flex: 0 0 auto;
+    font-size: 13px;
+    padding: 6px 8px;
+    border-radius: 4px;
+  }
+
+  /* Editor takes full width */
+  .note-editor {
+    padding: 12px;
+  }
+
+  .note-editor h2 {
+    font-size: 18px;
+  }
+
+  .ql-container {
+    font-size: 14px;
+  }
+
+  /* Context menus fit smaller screens */
+  .context-popup {
+    min-width: 140px;
+    font-size: 13px;
+  }
+}

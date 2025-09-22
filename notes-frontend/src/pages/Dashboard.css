@@ -1,0 +1,507 @@
+/* Dashboard layout */
+.dashboard {
+  background: #f9fafb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center; /* Ensures menu + logo are aligned */
+  gap: 5px; /* Slightly increased space between menu button and logo */
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 24px; /* Reduced size for better alignment */
+  cursor: pointer;
+  padding: 4px; /* Added padding for better click area */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px; /* Fixed height to match logo */
+}
+
+/* Menu popup (like user popup) */
+.menu-popup {
+  position: absolute;
+  top: 55px; /* just below the navbar */
+  left: 20px; /* align near menu button */
+  width: 200px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.menu-popup button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.menu-popup button:hover {
+  background: #f3f4f6;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;          /* same height as menu button *//* Sidebar menu */
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.sidebar-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  padding: 12px 10px;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+.sidebar-menu li:hover {
+  background: #f1f5f9;
+}
+
+  width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;      /* crop any transparent padding inside the file */
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-box {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  width: 220px;
+}
+
+.settings-btn {
+  background: none;
+  border: none;
+  font-size: 20px; /* Reduced size for consistency */
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Settings popup */
+.settings-popup {
+  position: absolute;
+  top: 50px;
+  right: 70px; /* positions relative to ⚙️ */
+  width: 200px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.settings-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+}
+
+.settings-item:hover {
+  background: #f1f5f9;
+}
+
+.settings-subitem {
+  padding: 8px 30px;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
+.settings-subitem:hover {
+  background: #f1f5f9;
+}
+
+/* Submenu for appearance */
+.appearance-submenu {
+  position: absolute;
+  top: 10px;
+  left: -160px;
+  width: 150px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 6px 0;
+  z-index: 110;
+}
+
+.appearance-option {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.appearance-option:hover {
+  background: #f1f5f9;
+}
+
+.appearance-option.active {
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+/* Dark mode support */
+body[data-theme="dark"] {
+  background: #1e1e1e;
+  color: white;
+}
+
+body[data-theme="dark"] .navbar,
+body[data-theme="dark"] .settings-popup,
+body[data-theme="dark"] .appearance-submenu {
+  background: #2d2d2d;
+  color: white;
+}
+
+
+.user-circle {
+  background: #1e3a8a;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative; /* Needed for the popup */
+}
+
+/* User popup */
+.user-popup {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  min-width: 230px;
+  max-width: 320px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* a bit more space */
+  z-index: 50;
+  animation: fadeIn 0.2s ease-in-out;
+  color: black;
+  word-break: break-word; /* wraps long emails/names */
+}
+
+/* Updated popup text to always show */
+.user-popup p.truncate {
+  max-width: 100%;
+  white-space: normal; /* allows wrapping instead of hiding */
+  word-break: break-word;
+  font-size: 14px;
+  margin: 0;
+  color: #333;
+}
+
+.user-email {
+  display: inline-block;
+  max-width: 180px;   /* adjust width as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: #333;
+}
+
+
+
+.signout-btn {
+  background: #261cdc; /* red */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.signout-btn:hover {
+  background: #c53030;
+}
+
+/* simple fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Banner */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-actions {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.create-btn {
+  background: #1e3a8a;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Content */
+.content {
+  padding: 20px 30px;
+}
+
+
+/* Notes section wrapper */
+.notes-container {
+  margin-top: 20px;        /* space from the header */
+  display: flex;
+  justify-content: center; /* center the card horizontally */
+}
+
+/* Notes card (rectangle) */
+.notes-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  width: 100%;
+  max-width: 900px;        /* keeps it from being too wide */
+  overflow-x: auto;        /* handles table overflow */
+}
+
+/* Notes table inside the card */
+.notes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.notes-table th,
+.notes-table td {
+  text-align: left;
+  padding: 12px 16px;
+}
+
+.notes-table th {
+  background: #f3f4f6;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.notes-table tr {
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.notes-table tr:hover {
+  background: #f9fafb;
+}
+
+.note-icon {
+  margin-right: 8px;
+}
+/* ✅ Base styles (already in your code) remain as they are */
+
+/* -------------------------------------- */
+/* Responsive Design for Tablets & Phones */
+/* -------------------------------------- */
+
+/* For screens ≤ 768px (tablets and small laptops) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 16px;
+  }
+
+  .search-box {
+    width: 150px;
+    font-size: 13px;
+  }
+
+  .banner {
+    height: 150px;
+  }
+
+  .banner-actions {
+    bottom: 12px;
+    left: 16px;
+  }
+
+  .create-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .notes-card {
+    padding: 15px;
+  }
+
+  .notes-table th,
+  .notes-table td {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+
+/* For screens ≤ 480px (phones) */
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .navbar-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .navbar-right {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .search-box {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .settings-btn,
+  .user-circle {
+    font-size: 18px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .banner {
+    height: 120px;
+  }
+
+  .banner-actions {
+    left: 10px;
+    bottom: 10px;
+  }
+
+  .create-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  /* Notes card full width on phones */
+  .notes-card {
+    width: 100%;
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  /* ✅ Turn table into a stacked card layout */
+  .notes-table,
+  .notes-table thead,
+  .notes-table tbody,
+  .notes-table th,
+  .notes-table td,
+  .notes-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .notes-table thead {
+    display: none; /* hide header */
+  }
+
+  .notes-table tr {
+    margin-bottom: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .notes-table td {
+    padding: 6px 8px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .notes-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    margin-right: 8px;
+    color: #555;
+  }
+}
