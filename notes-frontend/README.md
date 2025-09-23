@@ -27,17 +27,11 @@ Install dependencies
 npm install
 
 
-Start the backend
-cd notes-backend
-npm install
-npm run dev or npm start
+How to run the app
+Naviagte to the backend folder(notes-backend)
+start the backend with this command 'npm start'
 
-Start the frontend
-cd notes-frontend
-npm install
-npm start
-This will automatically open your web browser. 
-
+And open the web app on http://localhost:4000
 
 Notes
 
