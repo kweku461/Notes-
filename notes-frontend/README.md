@@ -30,7 +30,7 @@ npm install
 Start the backend
 cd notes-backend
 npm install
-npm run dev
+npm run dev or npm start
 
 Start the frontend
 cd notes-frontend
