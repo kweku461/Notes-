@@ -14,6 +14,8 @@ function RegisterPage() {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false); // ✅ Prevent multiple clicks
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+
 
   const navigate = useNavigate();
 
@@ -35,7 +37,7 @@ function RegisterPage() {
     try {
       setLoading(true); // disable button
 
-      const response = await fetch("http://localhost:4000/auth/register", {
+      const response = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -127,7 +129,7 @@ function RegisterPage() {
 
             <p className="already-account text-center">
               Already have an account?{" "}
-              <Link to="/" className="text-link">Log in</Link>
+              <Link to="/login" className="text-link">Log in</Link>
             </p>
 
             <button type="submit" disabled={loading}>

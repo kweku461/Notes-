@@ -12,6 +12,8 @@ function Dashboard() {
   const [notes, setNotes] = useState([]);
   const [contextMenu, setContextMenu] = useState(null); // Right-click menu state
   const [searchTerm, setSearchTerm] = useState(""); // ✅ for searching
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,7 +50,7 @@ function Dashboard() {
           return;
         }
 
-        const res = await fetch("http://localhost:4000/notes", {
+       const res = await fetch(`${API_URL}/notes`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -114,7 +116,7 @@ function Dashboard() {
   const handleDeleteNote = async (noteId) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:4000/notes/${noteId}`, {
+      const res = await fetch(`${API_URL}/notes/${noteId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
