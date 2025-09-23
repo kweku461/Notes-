@@ -36,7 +36,6 @@ function NotePage() {
   const [pageContextMenu, setPageContextMenu] = useState(null);
 
   const activePage = pages.find((p) => p.id === activePageId);
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
 
   // Theme toggle
   const toggleTheme = (selectedTheme) => {
@@ -86,7 +85,7 @@ function NotePage() {
           return;
         }
 
-        const res = await axios.get(`${API_URL}/notes/${id}`, { 
+        const res = await axios.get(`http://localhost:4000/notes/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -174,10 +173,16 @@ function NotePage() {
       let response;
       if (id || activePage.noteId) {
         const targetId = id || activePage.noteId;
-        response = await axios.put(`${API_URL}/notes/${targetId}`, noteData, { headers: { Authorization: `Bearer ${token}` } });
+        response = await axios.put(
+          `http://localhost:4000/notes/${targetId}`,
+          noteData,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
         showToast("✏️ Note updated!");
       } else {
-        response = await axios.post(`${API_URL}/notes`, noteData, { headers: { Authorization: `Bearer ${token}` } });
+        response = await axios.post("http://localhost:4000/notes", noteData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
         const newNoteId = response.data.id;
         setPages(
