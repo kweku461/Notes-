@@ -19,7 +19,7 @@ app.use('/auth', authRoutes);
 app.use('/notes', noteRoutes);
 
 // ✅ Serve React frontend
-const frontendBuildPath = path.join(__dirname, '../../notes-frontend/build');
+const frontendBuildPath = path.join(__dirname, '../notes-frontend/build');
 app.use(express.static(frontendBuildPath));
 
 // ✅ Fallback middleware for frontend routes (avoids using '*')
