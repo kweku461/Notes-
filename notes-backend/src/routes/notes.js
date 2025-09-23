@@ -1,11 +1,11 @@
 const express = require('express');
 const db = require('../models');
-const authenticateToken = require('../middleware/authmiddleware');
+const authenticateToken = require('../middleware/authMiddleware');
 
 const router = express.Router();
 const Note = db.Note;
 
-// Create note
+
 // Create note
 router.post('/', authenticateToken, async (req, res) => {
   try {
@@ -81,19 +81,6 @@ router.get('/:id', authenticateToken, async (req, res) => {
   }
 });
 
-// Permanently delete a note
-router.delete("/notes/:id", authenticateToken, async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    // If using an ORM/DB:
-    await Note.findByIdAndDelete(id);  
-
-    res.json({ message: "Note permanently deleted" });
-  } catch (err) {
-    res.status(500).json({ error: "Failed to delete note" });
-  }
-});
 
 
 module.exports = router;
