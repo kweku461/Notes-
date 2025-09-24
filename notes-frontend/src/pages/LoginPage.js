@@ -4,8 +4,6 @@ import "../App.css";
 
 function LoginPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -16,7 +14,7 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/auth/login", {
+      const response = await fetch("https://notes-e7ee.onrender.com/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

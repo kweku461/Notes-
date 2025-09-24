@@ -10,10 +10,11 @@ function Dashboard() {
   const [theme, setTheme] = useState("light");
   const [user, setUser] = useState({ name: "", email: "", initials: "" });
   const [notes, setNotes] = useState([]);
-  const [contextMenu, setContextMenu] = useState(null); // Right-click menu state
-  const [searchTerm, setSearchTerm] = useState(""); // ✅ for searching
-  const API_URL = process.env.REACT_APP_API_URL;
+  const [contextMenu, setContextMenu] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+
+  const API_URL = "https://notes-e7ee.onrender.com"; // ✅ hardcoded backend URL
 
   useEffect(() => {
     // Load user info
@@ -49,7 +50,7 @@ function Dashboard() {
           return;
         }
 
-       const res = await fetch(`${API_URL}/notes`, {
+        const res = await fetch(`${API_URL}/notes`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -72,7 +73,6 @@ function Dashboard() {
   // Highlight helper
   const highlightMatch = (text, query) => {
     if (!query) return text;
-
     const regex = new RegExp(`(${query})`, "gi");
     const parts = text.split(regex);
 
@@ -115,7 +115,7 @@ function Dashboard() {
   const handleDeleteNote = async (noteId) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:4000/notes/${noteId}`, {
+      const res = await fetch(`${API_URL}/notes/${noteId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -150,10 +150,7 @@ function Dashboard() {
   );
 
   return (
-    <div
-      className="dashboard"
-      onClick={() => setContextMenu(null)} // Close context menu
-    >
+    <div className="dashboard" onClick={() => setContextMenu(null)}>
       {/* Navbar */}
       <nav className="navbar">
         <div className="navbar-left">
@@ -176,7 +173,7 @@ function Dashboard() {
             className="search-box"
             placeholder="🔍 Search Notes"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} // ✅ updates search
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button
             className="settings-btn"
@@ -217,9 +214,6 @@ function Dashboard() {
                   </div>
                 </div>
               )}
-
-            
-          
             </div>
           )}
 
@@ -227,8 +221,8 @@ function Dashboard() {
             {user.initials || "U"}
             {showPopup && (
               <div className="user-popup">
-                   <p>{user.name}</p>
-               <p className="user-email">{user.email}</p>
+                <p>{user.name}</p>
+                <p className="user-email">{user.email}</p>
                 <button className="signout-btn" onClick={handleSignOut}>
                   Sign Out
                 </button>
@@ -251,7 +245,6 @@ function Dashboard() {
       {/* Content */}
       <div className="content">
         <h2>My Notes</h2>
-
         <div className="notes-container">
           <div className="notes-card">
             {filteredNotes.length === 0 ? (

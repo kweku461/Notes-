@@ -6,6 +6,8 @@ import { showToast } from "../utils/toast";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 import axios from "axios";
+const API_BASE = "https://notes-e7ee.onrender.com"; // ✅ Use Render backend
+
 
 function NotePage() {
   const { id } = useParams(); 
@@ -85,7 +87,7 @@ function NotePage() {
           return;
         }
 
-        const res = await axios.get(`http://localhost:4000/notes/${id}`, {
+       const res = await axios.get(`${API_BASE}/notes/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -173,14 +175,14 @@ function NotePage() {
       let response;
       if (id || activePage.noteId) {
         const targetId = id || activePage.noteId;
-        response = await axios.put(
-          `http://localhost:4000/notes/${targetId}`,
+         response = await axios.put(
+          `${API_BASE}/notes/${targetId}`,
           noteData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         showToast("✏️ Note updated!");
       } else {
-        response = await axios.post("http://localhost:4000/notes", noteData, {
+        response = await axios.post(`${API_BASE}/notes`, noteData, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

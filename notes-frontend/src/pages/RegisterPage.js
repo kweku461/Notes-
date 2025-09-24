@@ -36,7 +36,7 @@ function RegisterPage() {
     try {
       setLoading(true); // disable button
 
-      const response = await fetch("http://localhost:4000/auth/register", {
+      const response = await fetch("https://notes-e7ee.onrender.com/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -128,7 +128,7 @@ function RegisterPage() {
 
             <p className="already-account text-center">
               Already have an account?{" "}
-              <Link to="/login" className="text-link">Log in</Link>
+              <Link to="/" className="text-link">Log in</Link>
             </p>
 
             <button type="submit" disabled={loading}>
